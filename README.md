@@ -1,4 +1,4 @@
-# Reeve CI / CD - Reeve CLI Pipeline Step
+# Reeve CI / CD - Pipeline Step: Reeve CLI
 
 This is a [Reeve](https://github.com/reeveci/reeve) step for controlling a Reeve server using reeve-cli.
 
