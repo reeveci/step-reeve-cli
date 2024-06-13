@@ -14,6 +14,7 @@ RUN cp $(go env GOPATH)/bin/reeve-cli /usr/local/bin/
 FROM alpine
 
 COPY --chmod=755 docker-entrypoint.sh /usr/local/bin/
+COPY --chmod=755 --from=builder /usr/local/bin/reeve /usr/local/bin/
 COPY --chmod=755 --from=builder /usr/local/bin/reeve-cli /usr/local/bin/
 
 # URL: Reeve server URL
