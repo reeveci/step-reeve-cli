@@ -6,4 +6,11 @@ if [ -z "$REEVE_API" ]; then
   exit 1
 fi
 
-echo $SECRET | reeve-cli --config /dev/null --url $(printf "%s" "$URL") --secret - $@
+# Temporary compatibility switch
+if [ "$1" = "reeve" ]; then
+  reeve config set url "$URL"
+  reeve config set secret "$SECRET"
+  $@
+else
+  echo $SECRET | reeve-cli --config /dev/null --url $(printf "%s" "$URL") --secret - $@
+fi

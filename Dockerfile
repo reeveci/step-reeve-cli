@@ -3,7 +3,12 @@ FROM golang AS builder
 ARG REEVE_CLI_VERSION
 
 ENV CGO_ENABLED=0
-RUN go install -ldflags "-X main.buildVersion=${REEVE_CLI_VERSION}" github.com/reeveci/reeve/reeve-cli@v${REEVE_CLI_VERSION}
+RUN go install github.com/reeveci/reeve-cli/reeve@v${REEVE_CLI_VERSION}
+RUN cp $(go env GOPATH)/bin/reeve /usr/local/bin/
+
+# Install legacy CLI tool for compatibility
+ENV CGO_ENABLED=0
+RUN go install -ldflags "-X main.buildVersion=1.2.0" github.com/reeveci/reeve/reeve-cli@v1.2.0
 RUN cp $(go env GOPATH)/bin/reeve-cli /usr/local/bin/
 
 FROM alpine
